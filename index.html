@@ -128,7 +128,7 @@
       font-weight: 500;
     }
 
-    /* Video Player di Dalam Card */
+    /* Video Player Box */
     .video-box {
       width: 100%;
       margin: 15px 0 20px 0;
@@ -136,6 +136,7 @@
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       border: 2px solid #e7c6ff;
+      background: #000;
     }
     .video-box video {
       width: 100%;
@@ -183,7 +184,7 @@
       <button class="btn-action" onclick="startTahap2Direct()">Buka Suratnya 💌</button>
     </div>
 
-    <!-- TAHAP 2 (LENGKAP: MUSIK, FOTO, VIDEO, & SURAT) -->
+    <!-- TAHAP 2 -->
     <div class="card hidden" id="tahap2">
       <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Panda.png" class="panda-top" alt="Panda">
       <button class="music-btn" id="musicToggle" onclick="toggleMusic()">🎵</button>
@@ -204,11 +205,10 @@
         </div>
       </div>
 
-      <!-- VIDEO BOX (TETAP ADA DI SINI TANPA MERUSAK TRANSISI) -->
-      <div class="video-box">
-        <video controls playsinline preload="metadata">
+      <!-- VIDEO BOX (Otomatis Ngumpet Kalau File video1.mp4 Gak Ketemu) -->
+      <div class="video-box" id="vBox">
+        <video controls playsinline preload="metadata" onerror="hideVideo()">
           <source src="video1.mp4" type="video/mp4">
-          Browser kamu tidak mendukung pemutaran video.
         </video>
       </div>
 
@@ -265,6 +265,10 @@
 
     startTahap1Effect();
 
+    function hideVideo() {
+      document.getElementById('vBox').style.display = 'none';
+    }
+
     function toggleMusic() {
       if (isPlaying) {
         music.pause();
@@ -289,5 +293,7 @@
     }
   </script>
 
+</body>
+</html>
 </body>
 </html>
