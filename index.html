@@ -101,36 +101,6 @@
     }
     .btn-action:hover { background: #7b2cbf; transform: scale(1.05); }
 
-    /* Overlay Video Fullscreen */
-    .video-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      background: rgba(0,0,0,0.92);
-      z-index: 100;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .video-overlay video {
-      width: 85%;
-      max-width: 320px;
-      aspect-ratio: 9/16;
-      border-radius: 16px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.2);
-    }
-    .btn-close-video {
-      margin-top: 18px;
-      background: #9d4edd;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 20px;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-
     /* Layout Zig-Zag Foto */
     .zigzag-item {
       display: flex;
@@ -185,14 +155,6 @@
   <!-- Container Efek Partikel -->
   <div id="effectContainer"></div>
 
-  <!-- Overlay Video -->
-  <div class="video-overlay" id="videoOverlay">
-    <video controls id="mainVideo" playsinline preload="auto">
-      <source src="video1.mp4" type="video/mp4">
-    </video>
-    <button class="btn-close-video" onclick="finishVideo()">Lanjut Lihat Surat & Foto 💜</button>
-  </div>
-
   <div class="container">
     
     <!-- TAHAP 1 -->
@@ -202,11 +164,12 @@
       <h1>Happy Birthday Sayang! 💜</h1>
       <p class="subtitle">Ada pesan spesial buat kamu hari ini... Spesial dipersiapkan penuh cinta ✨</p>
       
-      <button class="btn-action" onclick="startTahap2()">Buka Suratnya 💌</button>
+      <button class="btn-action" onclick="startTahap2Direct()">Buka Suratnya 💌</button>
     </div>
 
     <!-- TAHAP 2 -->
     <div class="card hidden" id="tahap2">
+      <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Panda.png" class="panda-top" alt="Panda">
       <button class="music-btn" id="musicToggle" onclick="toggleMusic()">🎵</button>
 
       <!-- FOTO 1 -->
@@ -270,4 +233,39 @@
         item.innerHTML = items[Math.floor(Math.random() * items.length)];
         item.style.fontSize = Math.random() * 10 + 12 + 'px';
         item.style.left = Math.random() * 100 + 'vw';
-        item.style.animationDuration =
+        item.style.animationDuration = Math.random() * 3 + 4 + 's';
+        container.appendChild(item);
+        setTimeout(() => item.remove(), 7000);
+      }, 250);
+    }
+
+    startTahap1Effect();
+
+    function toggleMusic() {
+      if (isPlaying) {
+        music.pause();
+        musicBtn.innerHTML = '🔇';
+        isPlaying = false;
+      } else {
+        music.play();
+        musicBtn.innerHTML = '🎵';
+        isPlaying = true;
+      }
+    }
+
+    // LANGSUNG PINDAH KE TAHAP 2 TANPA VIDEO BIAR NGGAK MACET
+    function startTahap2Direct() {
+      document.getElementById('tahap1').classList.add('hidden');
+      document.getElementById('tahap2').classList.remove('hidden');
+
+      // Putar musik jika bisa
+      if (music) {
+        music.play().then(() => { isPlaying = true; }).catch(e => console.log(e));
+      }
+
+      startTahap2Effect();
+    }
+  </script>
+
+</body>
+</html>
