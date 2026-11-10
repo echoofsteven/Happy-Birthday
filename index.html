@@ -42,7 +42,7 @@
     .card {
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
-      padding: 45px 25px 50px 25px; /* Jarak bawah ditambah biar gak numpuk sama tombol pojok */
+      padding: 45px 25px 55px 25px;
       border-radius: 24px;
       box-shadow: 0 15px 35px rgba(106, 76, 147, 0.2);
       border: 3px solid #e7c6ff;
@@ -86,4 +86,144 @@
     .btn-bottom-right {
       position: absolute;
       bottom: -18px;
-      <button class="btn-action" onclick="goToTahap(2)">Buka Surat
+      right: 15px;
+      background: #7b2cbf;
+      color: white;
+      border: 2px solid #e7c6ff;
+      padding: 10px 20px;
+      font-size: 0.88rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 6px 15px rgba(123, 44, 191, 0.4);
+      transition: all 0.3s ease;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-bottom-right:hover {
+      background: #9d4edd;
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    h1 { color: #7b2cbf; margin-bottom: 12px; font-size: 1.5rem; margin-top: 10px; }
+    .subtitle { font-size: 0.95rem; color: #9d4edd; margin-bottom: 25px; line-height: 1.5; }
+
+    /* Tombol Buka Surat Utama (Tahap 1) */
+    .btn-action {
+      background: #9d4edd;
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      font-size: 1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 5px 15px rgba(157, 78, 221, 0.4);
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    .btn-action:hover { background: #7b2cbf; transform: scale(1.05); }
+
+    /* Layout Zig-Zag Foto */
+    .zigzag-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      text-align: left;
+      width: 100%;
+    }
+    .zigzag-item.reverse { flex-direction: row-reverse; text-align: right; }
+    
+    .zigzag-img {
+      width: 110px;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 2px solid #e7c6ff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      flex-shrink: 0;
+    }
+    .zigzag-text {
+      font-size: 0.85rem;
+      color: #4a3b52;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    /* Video Box di Tahap 3 */
+    .video-box {
+      width: 100%;
+      margin: 15px 0 10px 0;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border: 2px solid #e7c6ff;
+      background: #000;
+    }
+    .video-box video {
+      width: 100%;
+      max-height: 360px;
+      display: block;
+      border-radius: 14px;
+    }
+
+    /* Surat Utama */
+    .wishes {
+      line-height: 1.7;
+      font-size: 0.9rem;
+      color: #3c096c;
+      background: #fcf8ff;
+      padding: 16px;
+      border-radius: 16px;
+      border-left: 4px solid #9d4edd;
+      text-align: left;
+      margin-top: 5px;
+      white-space: pre-line;
+      box-shadow: 0 4px 12px rgba(157, 78, 221, 0.08);
+      width: 100%;
+    }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <!-- Audio Backsound -->
+  <audio id="bgMusic" loop src="lagu.mp3" preload="auto"></audio>
+
+  <!-- Container Efek Partikel -->
+  <div id="effectContainer"></div>
+
+  <div class="container">
+    
+    <!-- TAHAP 1 -->
+    <div class="card" id="tahap1">
+      <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Panda.png" class="panda-top" alt="Panda">
+      
+      <h1>Happy Birthday Sayang! 💜</h1>
+      <p class="subtitle">Ada pesan spesial buat kamu hari ini... Spesial dipersiapkan penuh cinta ✨</p>
+      
+      <button class="btn-action" id="btnStart">Buka Suratnya 💌</button>
+    </div>
+
+    <!-- TAHAP 2 (FOTO + SURAT + TOMBOL KHUSUS POJOK KANAN BAWAH) -->
+    <div class="card hidden" id="tahap2">
+      <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Panda.png" class="panda-top" alt="Panda">
+      <button class="music-btn" onclick="toggleMusic()">🎵</button>
+
+      <!-- FOTO 1 -->
+      <div class="zigzag-item" style="margin-top: 5px;">
+        <img src="foto1.jpg" class="zigzag-img" alt="Foto 1">
+        <div class="zigzag-text">
+          "Ini momen pertama kali kita foto bareng sayang, masih agak malu-malu tapi seneng banget 🤍"
+        </div>
+      </div>
+
+      <!-- FOTO 2 -->
+      <div class="zigzag-item reverse">
+        <img src="foto2.jpg" class="zigzag-img" alt="Foto 2">
+        <div class="zigzag-text">
+          "Salah satu momen paling
