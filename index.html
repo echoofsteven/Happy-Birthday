@@ -13,7 +13,7 @@
       background: linear-gradient(135deg, #e6d5f7 0%, #c8b6ff 50%, #b8c0ff 100%);
       color: #4a3b52;
       text-align: center;
-      padding: 20px 10px;
+      padding: 30px 10px 20px 10px;
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
@@ -43,19 +43,20 @@
     .card {
       background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(8px);
-      padding: 30px 20px 25px 20px;
+      padding: 35px 20px 25px 20px;
       border-radius: 24px;
       box-shadow: 0 15px 35px rgba(106, 76, 147, 0.18);
       border: 3px solid #e7c6ff;
       position: relative;
+      margin-top: 25px; /* Kasih jarak atas biar panda ada space buat nangkring */
     }
 
-    /* Panda Nangkring Kakinya Gelantung di Atas Frame */
+    /* Panda Nangkring Pas di Atas Garis Frame */
     .panda-top {
       position: absolute;
-      top: -45px;
-      left: 20px;
-      width: 70px;
+      top: -38px;
+      left: 25px;
+      width: 75px;
       z-index: 15;
       filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
     }
@@ -208,65 +209,10 @@
     
     <!-- TAHAP 1: LANDING PAGE -->
     <div class="card" id="tahap1">
-      <!-- Panda Gelantung Kakinya -->
+      <!-- Panda Nangkring Pas di Garis Atas Card -->
       <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Panda.png" class="panda-top" alt="Panda">
       
       <h1>Happy Birthday Sayang! 💜</h1>
       <p class="subtitle">Ada pesan spesial buat kamu hari ini... Spesial dipersiapkan penuh cinta ✨</p>
       
-      <button class="btn-action" onclick="startTahap2()">Buka Suratnya 💌</button>
-    </div>
-
-    <!-- TAHAP 2: ISI & SURAT (ZIG-ZAG + LILAC THEME) -->
-    <div class="card hidden" id="tahap2">
-      
-      <!-- Tombol Mute / Unmute Musik di Pojok Kanan Frame -->
-      <button class="music-btn" id="musicToggle" onclick="toggleMusic()">🎵</button>
-
-      <!-- Stiker Animasi Tambahan (Beruang Gandengan & Panda Pegang Hati) -->
-      <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Bear.png" class="sticker-bears" alt="Bear">
-      <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Panda.png" class="sticker-panda-heart" alt="Panda Heart">
-
-      <!-- FOTO 1 (KIRI) + TEKS (KANAN) -->
-      <div class="zigzag-item">
-        <img src="foto1.jpg" class="zigzag-img" alt="Foto 1">
-        <div class="zigzag-text">
-          "Ini momen pertama kali kita foto bareng sayang, masih agak malu-malu tapi seneng banget 🤍"
-        </div>
-      </div>
-
-      <!-- FOTO 2 (KANAN) + TEKS (KIRI) -->
-      <div class="zigzag-item reverse">
-        <img src="foto2.jpg" class="zigzag-img" alt="Foto 2">
-        <div class="zigzag-text">
-          "Salah satu momen paling lucu & favorit aku bareng kamu! ✨"
-        </div>
-      </div>
-
-      <!-- SURAT UTAMA -->
-      <div class="wishes">
-        Makasih ya udah lahir dan nemenin hari-hariku sampai sekarang. 
-        
-        Semoga di umur yang baru ini kamu selalu sehat, makin bahagia, dan semua mimpi-mimpimu tercapai satu per satu. 
-
-        I'm so lucky to have you. Tetap jadi panda kecilku yang lucu ya! Love you always 💜🐼
-      </div>
-
-    </div>
-
-  </div>
-
-  <script>
-    const music = document.getElementById('bgMusic');
-    const musicBtn = document.getElementById('musicToggle');
-    let isPlaying = false;
-    let effectInterval;
-
-    // Tahap 1: Efek Hujan Hati Pink
-    function startTahap1Effect() {
-      const container = document.getElementById('effectContainer');
-      effectInterval = setInterval(() => {
-        const item = document.createElement('div');
-        item.classList.add('falling-item');
-        item.innerHTML = '🩷';
-        item
+      <button class
