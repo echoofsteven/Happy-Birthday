@@ -62,7 +62,7 @@
       filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
     }
 
-    /* Tombol Musik Tahap 2 */
+    /* Tombol Musik Pojok Kanan Atas */
     .music-btn {
       position: absolute;
       top: 15px;
@@ -82,22 +82,23 @@
       z-index: 30;
     }
 
-    h1 { color: #7b2cbf; margin-bottom: 12px; font-size: 1.6rem; margin-top: 10px; }
+    h1 { color: #7b2cbf; margin-bottom: 12px; font-size: 1.5rem; margin-top: 10px; }
     .subtitle { font-size: 0.95rem; color: #9d4edd; margin-bottom: 25px; line-height: 1.5; }
 
-    /* Tombol Buka Surat */
+    /* Tombol Aksi */
     .btn-action {
       background: #9d4edd;
       color: white;
       border: none;
-      padding: 14px 32px;
-      font-size: 1rem;
+      padding: 12px 28px;
+      font-size: 0.95rem;
       border-radius: 50px;
       cursor: pointer;
       font-weight: bold;
       box-shadow: 0 5px 15px rgba(157, 78, 221, 0.4);
       transition: all 0.3s ease;
       display: inline-block;
+      margin-top: 15px;
     }
     .btn-action:hover { background: #7b2cbf; transform: scale(1.05); }
 
@@ -122,16 +123,16 @@
       flex-shrink: 0;
     }
     .zigzag-text {
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       color: #4a3b52;
       line-height: 1.4;
       font-weight: 500;
     }
 
-    /* Video Player Box */
+    /* Video Box di Tahap 3 */
     .video-box {
       width: 100%;
-      margin: 15px 0 20px 0;
+      margin: 15px 0 10px 0;
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -140,7 +141,7 @@
     }
     .video-box video {
       width: 100%;
-      max-height: 380px;
+      max-height: 360px;
       display: block;
       border-radius: 14px;
     }
@@ -148,14 +149,14 @@
     /* Surat Utama */
     .wishes {
       line-height: 1.7;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       color: #3c096c;
       background: #fcf8ff;
       padding: 16px;
       border-radius: 16px;
       border-left: 4px solid #9d4edd;
       text-align: left;
-      margin-top: 10px;
+      margin-top: 5px;
       white-space: pre-line;
       box-shadow: 0 4px 12px rgba(157, 78, 221, 0.08);
       width: 100%;
@@ -174,126 +175,11 @@
 
   <div class="container">
     
-    <!-- TAHAP 1 -->
+    <!-- TAHAP 1: LANDING -->
     <div class="card" id="tahap1">
       <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Panda.png" class="panda-top" alt="Panda">
       
       <h1>Happy Birthday Sayang! 💜</h1>
       <p class="subtitle">Ada pesan spesial buat kamu hari ini... Spesial dipersiapkan penuh cinta ✨</p>
       
-      <button class="btn-action" onclick="startTahap2Direct()">Buka Suratnya 💌</button>
-    </div>
-
-    <!-- TAHAP 2 -->
-    <div class="card hidden" id="tahap2">
-      <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Panda.png" class="panda-top" alt="Panda">
-      <button class="music-btn" id="musicToggle" onclick="toggleMusic()">🎵</button>
-
-      <!-- FOTO 1 -->
-      <div class="zigzag-item" style="margin-top: 10px;">
-        <img src="foto1.jpg" class="zigzag-img" alt="Foto 1">
-        <div class="zigzag-text">
-          "Ini momen pertama kali kita foto bareng sayang, masih agak malu-malu tapi seneng banget 🤍"
-        </div>
-      </div>
-
-      <!-- FOTO 2 -->
-      <div class="zigzag-item reverse">
-        <img src="foto2.jpg" class="zigzag-img" alt="Foto 2">
-        <div class="zigzag-text">
-          "Salah satu momen paling lucu & favorit aku bareng kamu! ✨"
-        </div>
-      </div>
-
-      <!-- VIDEO BOX (Otomatis Ngumpet Kalau File video1.mp4 Gak Ketemu) -->
-      <div class="video-box" id="vBox">
-        <video controls playsinline preload="metadata" onerror="hideVideo()">
-          <source src="video1.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <!-- SURAT -->
-      <div class="wishes">
-        Makasih ya udah lahir dan nemenin hari-hariku sampai sekarang. 
-        
-        Semoga di umur yang baru ini kamu selalu sehat, makin bahagia, dan semua mimpi-mimpimu tercapai satu per satu. 
-
-        I'm so lucky to have you. Tetap jadi panda kecilku yang lucu ya! Love you always 💜🐼
-      </div>
-
-    </div>
-
-  </div>
-
-  <script>
-    const music = document.getElementById('bgMusic');
-    const musicBtn = document.getElementById('musicToggle');
-    let isPlaying = false;
-    let effectInterval;
-
-    function startTahap1Effect() {
-      const container = document.getElementById('effectContainer');
-      effectInterval = setInterval(() => {
-        const item = document.createElement('div');
-        item.classList.add('falling-item');
-        item.innerHTML = '🩷';
-        item.style.fontSize = Math.random() * 8 + 14 + 'px';
-        item.style.left = Math.random() * 100 + 'vw';
-        item.style.animationDuration = Math.random() * 3 + 3 + 's';
-        container.appendChild(item);
-        setTimeout(() => item.remove(), 6000);
-      }, 300);
-    }
-
-    function startTahap2Effect() {
-      clearInterval(effectInterval);
-      const container = document.getElementById('effectContainer');
-      container.innerHTML = '';
-
-      const items = ['✨', '🌸', '💜', '❄️'];
-      effectInterval = setInterval(() => {
-        const item = document.createElement('div');
-        item.classList.add('falling-item');
-        item.innerHTML = items[Math.floor(Math.random() * items.length)];
-        item.style.fontSize = Math.random() * 10 + 12 + 'px';
-        item.style.left = Math.random() * 100 + 'vw';
-        item.style.animationDuration = Math.random() * 3 + 4 + 's';
-        container.appendChild(item);
-        setTimeout(() => item.remove(), 7000);
-      }, 250);
-    }
-
-    startTahap1Effect();
-
-    function hideVideo() {
-      document.getElementById('vBox').style.display = 'none';
-    }
-
-    function toggleMusic() {
-      if (isPlaying) {
-        music.pause();
-        musicBtn.innerHTML = '🔇';
-        isPlaying = false;
-      } else {
-        music.play();
-        musicBtn.innerHTML = '🎵';
-        isPlaying = true;
-      }
-    }
-
-    function startTahap2Direct() {
-      document.getElementById('tahap1').classList.add('hidden');
-      document.getElementById('tahap2').classList.remove('hidden');
-
-      if (music) {
-        music.play().then(() => { isPlaying = true; }).catch(e => console.log(e));
-      }
-
-      startTahap2Effect();
-    }
-  </script>
-
-</body>
-</html>
-</body>
-</html>
+      <button class="btn-action" onclick="goToTahap(2)">Buka Surat
