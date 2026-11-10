@@ -226,4 +226,126 @@
       <div class="zigzag-item reverse">
         <img src="foto2.jpg" class="zigzag-img" alt="Foto 2">
         <div class="zigzag-text">
-          "Salah satu momen paling
+          "Salah satu momen paling lucu & favorit aku bareng kamu! ✨"
+        </div>
+      </div>
+
+      <!-- SURAT -->
+      <div class="wishes">
+        Makasih ya udah lahir dan nemenin hari-hariku sampai sekarang. Semoga di umur yang baru ini kamu selalu sehat, makin bahagia, dan semua mimpi tercapai! 💜
+      </div>
+
+      <!-- TOMBOL POJOK KANAN BAWAH FRAME -->
+      <button class="btn-bottom-right" onclick="goToTahap(3)">
+        Nonton Video 🎬 ➡️
+      </button>
+    </div>
+
+    <!-- TAHAP 3 (HALAMAN VIDEO) -->
+    <div class="card hidden" id="tahap3">
+      <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Panda.png" class="panda-top" alt="Panda">
+      <button class="music-btn" onclick="toggleMusic()">🎵</button>
+
+      <h1 style="font-size: 1.3rem;">Spesial Video Buat Kamu 🎥</h1>
+      
+      <div class="video-box" id="vBox">
+        <video controls playsinline preload="metadata" onerror="hideVideo()">
+          <source src="video1.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <p class="subtitle" style="margin: 10px 0 0 0; font-size: 0.85rem;">Semoga suka ya sama videonya! Love you so much 💜🐼</p>
+      
+      <!-- TOMBOL BALIK KANAN BAWAH -->
+      <button class="btn-bottom-right" style="background: #6c757d;" onclick="goToTahap(2)">
+        ⬅️ Kembali
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    const music = document.getElementById('bgMusic');
+    let isPlaying = false;
+    let effectInterval;
+
+    function startTahap1Effect() {
+      const container = document.getElementById('effectContainer');
+      if(!container) return;
+      effectInterval = setInterval(() => {
+        const item = document.createElement('div');
+        item.classList.add('falling-item');
+        item.innerHTML = '🩷';
+        item.style.fontSize = Math.random() * 8 + 14 + 'px';
+        item.style.left = Math.random() * 100 + 'vw';
+        item.style.animationDuration = Math.random() * 3 + 3 + 's';
+        container.appendChild(item);
+        setTimeout(() => item.remove(), 6000);
+      }, 300);
+    }
+
+    function startTahap2Effect() {
+      clearInterval(effectInterval);
+      const container = document.getElementById('effectContainer');
+      if(!container) return;
+      container.innerHTML = '';
+
+      const items = ['✨', '🌸', '💜', '❄️'];
+      effectInterval = setInterval(() => {
+        const item = document.createElement('div');
+        item.classList.add('falling-item');
+        item.innerHTML = items[Math.floor(Math.random() * items.length)];
+        item.style.fontSize = Math.random() * 10 + 12 + 'px';
+        item.style.left = Math.random() * 100 + 'vw';
+        item.style.animationDuration = Math.random() * 3 + 4 + 's';
+        container.appendChild(item);
+        setTimeout(() => item.remove(), 7000);
+      }, 250);
+    }
+
+    startTahap1Effect();
+
+    function hideVideo() {
+      const vBox = document.getElementById('vBox');
+      if(vBox) vBox.style.display = 'none';
+    }
+
+    function toggleMusic() {
+      if (!music) return;
+      if (isPlaying) {
+        music.pause();
+        isPlaying = false;
+      } else {
+        music.play().then(() => { isPlaying = true; }).catch(e => console.log(e));
+      }
+    }
+
+    function goToTahap(tahapTarget) {
+      // Sembunyikan semua tahap dulu
+      document.getElementById('tahap1').classList.add('hidden');
+      document.getElementById('tahap2').classList.add('hidden');
+      document.getElementById('tahap3').classList.add('hidden');
+
+      // Tampilkan tahap yang dituju
+      if (tahapTarget === 2) {
+        document.getElementById('tahap2').classList.remove('hidden');
+        startTahap2Effect();
+      } else if (tahapTarget === 3) {
+        document.getElementById('tahap3').classList.remove('hidden');
+        startTahap2Effect();
+      }
+
+      // Coba putar musik tanpa mengganggu transisi jika di-block
+      if (music && !isPlaying) {
+        music.play().then(() => { isPlaying = true; }).catch(e => console.log("Audio autoplay error (ignored)"));
+      }
+    }
+
+    // Pasang Event Listener langsung di tombol utama
+    document.getElementById('btnStart').addEventListener('click', function() {
+      goToTahap(2);
+    });
+  </script>
+
+</body>
+</html>
