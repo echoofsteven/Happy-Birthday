@@ -101,44 +101,17 @@
     }
     .btn-action:hover { background: #7b2cbf; transform: scale(1.05); }
 
-    /* Layout Zig-Zag Foto */
-    .zigzag-item {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 20px;
-      text-align: left;
-      width: 100%;
-    }
-    .zigzag-item.reverse { flex-direction: row-reverse; text-align: right; }
-    
-    .zigzag-img {
-      width: 110px;
-      height: 110px;
-      object-fit: cover;
-      border-radius: 16px;
-      border: 2px solid #e7c6ff;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      flex-shrink: 0;
-    }
-    .zigzag-text {
-      font-size: 0.88rem;
-      color: #4a3b52;
-      line-height: 1.4;
-      font-weight: 500;
-    }
-
     /* Surat Utama */
     .wishes {
-      line-height: 1.7;
-      font-size: 0.92rem;
+      line-height: 1.8;
+      font-size: 0.95rem;
       color: #3c096c;
       background: #fcf8ff;
-      padding: 16px;
+      padding: 20px;
       border-radius: 16px;
       border-left: 4px solid #9d4edd;
       text-align: left;
-      margin-top: 10px;
+      margin-top: 15px;
       white-space: pre-line;
       box-shadow: 0 4px 12px rgba(157, 78, 221, 0.08);
       width: 100%;
@@ -164,108 +137,15 @@
       <h1>Happy Birthday Sayang! 💜</h1>
       <p class="subtitle">Ada pesan spesial buat kamu hari ini... Spesial dipersiapkan penuh cinta ✨</p>
       
-      <button class="btn-action" onclick="startTahap2Direct()">Buka Suratnya 💌</button>
+      <button class="btn-action" onclick="openLetter()">Buka Suratnya 💌</button>
     </div>
 
-    <!-- TAHAP 2 -->
+    <!-- TAHAP 2 (ISI SURAT MURNI TEKS & MUSIK) -->
     <div class="card hidden" id="tahap2">
       <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Panda.png" class="panda-top" alt="Panda">
       <button class="music-btn" id="musicToggle" onclick="toggleMusic()">🎵</button>
 
-      <!-- FOTO 1 -->
-      <div class="zigzag-item">
-        <img src="foto1.jpg" class="zigzag-img" alt="Foto 1">
-        <div class="zigzag-text">
-          "Ini momen pertama kali kita foto bareng sayang, masih agak malu-malu tapi seneng banget 🤍"
-        </div>
-      </div>
+      <h1 style="font-size: 1.4rem; margin-top: 5px;">Untuk Kamu, Cintaku 🤍</h1>
 
-      <!-- FOTO 2 -->
-      <div class="zigzag-item reverse">
-        <img src="foto2.jpg" class="zigzag-img" alt="Foto 2">
-        <div class="zigzag-text">
-          "Salah satu momen paling lucu & favorit aku bareng kamu! ✨"
-        </div>
-      </div>
-
-      <!-- SURAT -->
       <div class="wishes">
-        Makasih ya udah lahir dan nemenin hari-hariku sampai sekarang. 
-        
-        Semoga di umur yang baru ini kamu selalu sehat, makin bahagia, dan semua mimpi-mimpimu tercapai satu per satu. 
-
-        I'm so lucky to have you. Tetap jadi panda kecilku yang lucu ya! Love you always 💜🐼
-      </div>
-
-    </div>
-
-  </div>
-
-  <script>
-    const music = document.getElementById('bgMusic');
-    const musicBtn = document.getElementById('musicToggle');
-    let isPlaying = false;
-    let effectInterval;
-
-    function startTahap1Effect() {
-      const container = document.getElementById('effectContainer');
-      effectInterval = setInterval(() => {
-        const item = document.createElement('div');
-        item.classList.add('falling-item');
-        item.innerHTML = '🩷';
-        item.style.fontSize = Math.random() * 8 + 14 + 'px';
-        item.style.left = Math.random() * 100 + 'vw';
-        item.style.animationDuration = Math.random() * 3 + 3 + 's';
-        container.appendChild(item);
-        setTimeout(() => item.remove(), 6000);
-      }, 300);
-    }
-
-    function startTahap2Effect() {
-      clearInterval(effectInterval);
-      const container = document.getElementById('effectContainer');
-      container.innerHTML = '';
-
-      const items = ['✨', '🌸', '💜', '❄️'];
-      effectInterval = setInterval(() => {
-        const item = document.createElement('div');
-        item.classList.add('falling-item');
-        item.innerHTML = items[Math.floor(Math.random() * items.length)];
-        item.style.fontSize = Math.random() * 10 + 12 + 'px';
-        item.style.left = Math.random() * 100 + 'vw';
-        item.style.animationDuration = Math.random() * 3 + 4 + 's';
-        container.appendChild(item);
-        setTimeout(() => item.remove(), 7000);
-      }, 250);
-    }
-
-    startTahap1Effect();
-
-    function toggleMusic() {
-      if (isPlaying) {
-        music.pause();
-        musicBtn.innerHTML = '🔇';
-        isPlaying = false;
-      } else {
-        music.play();
-        musicBtn.innerHTML = '🎵';
-        isPlaying = true;
-      }
-    }
-
-    // LANGSUNG PINDAH KE TAHAP 2 TANPA VIDEO BIAR NGGAK MACET
-    function startTahap2Direct() {
-      document.getElementById('tahap1').classList.add('hidden');
-      document.getElementById('tahap2').classList.remove('hidden');
-
-      // Putar musik jika bisa
-      if (music) {
-        music.play().then(() => { isPlaying = true; }).catch(e => console.log(e));
-      }
-
-      startTahap2Effect();
-    }
-  </script>
-
-</body>
-</html>
+        Makasih ya udah lahir dan selalu
